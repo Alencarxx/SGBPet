@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Produtos>
+@using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Produtos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @if (TempData["Mensagem"] != null)
+    {
+        <br /><br /><br />
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["Mensagem"]
+        </div>
+    }
+
+    <h2>Produtos</h2>
+
+    <p>
+        <div style="text-align:right">
+            @Html.ActionLink("Novo Produto", "Criar", "Produtos", null, new { id = "addItem", @class = "btn btn-sm btn-info" })
+        </div>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Código")
+            </th>
+            <th>
+                @Html.DisplayName("Descrição")
+            </th>
+            <th>
+                @Html.DisplayName("Quantidade")
+            </th>
+            <th>
+                @Html.DisplayName("Valor")
+            </th>
+            <th>
+                @Html.DisplayName("Validade")
+            </th>
+            <th>
+                @Html.DisplayName("ICMS")
+            </th>
+            <th>
+                @Html.DisplayName("Unidade")
+            </th>
+            <th>
+                @Html.DisplayName("Observação")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ICMS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacao)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            Opções
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Editar", "../Produtos/Editar", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Deletar", "../Produtos/Deletar", new { id = item.Id })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    @Html.PagedListPager(Model, page => Url.Action("Produtos",
+                    new { pagina = page }))
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>

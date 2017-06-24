@@ -1,0 +1,26 @@
+﻿.form-signin {
+    max-width: 400px;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.form-signin-heading {
+    margin: 0px;
+}
+
+.linha-sup-cinza {
+    margin-top: 10px;
+    border-top: 1px solid #DDD;
+    padding-top: 10px;
+}
+
+.linha-sub-cinza {
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/*.form-group {
+    margin-bottom: 0px !important;
+}*/

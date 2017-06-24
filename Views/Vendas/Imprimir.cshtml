@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Pedido>
+    @using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Imprimir";
+        Layout = "~/Views/Shared/_Layout2.cshtml";
+    }    
+    <br /><br /><br />
+    <center><img src="~/Content/imagens/bom.jpg" /></center>
+    <center><h3>Detalhes do Pedido</h3></center>
+    
+        @*<div class="col-md-7">
+            @Html.TextBox("data", null, new { @class = "form-control", type = "Date" })
+        </div>*@
+    
+    <br /><br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Descrição")
+            </th>
+            <th>
+                @Html.DisplayName("Quantidade")
+            </th>
+            <th>
+                @Html.DisplayName("Valor")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <div style="text-align:right">
+                        <label>Total:</label><input name="ValorTotalPedidos" id="ValorTotalPedidos" class="ValorTotalPedidos" type="text" style="border:0; width: 250px" />
+                    </div>
+                    @*@Html.PagedListPager(Model, page => Url.Action("Vendas",
+                        new { pagina = page }))*@
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="col-md-12 linha-sup-cinza text-center hidden-print">
+        <button onclick="window.print();" class="btn btn-primary bt-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Pedido</button>
+        @Html.ActionLink("Voltar", "../Vendas/Criar", null, new { id = "addItem", @class = "btn btn-success" })
+    </div>
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                //$("#ValorTotalPedidos").on("input", function () {
+                var date = new Date();
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                if (month < 10) month = "0" + month;
+                if (day < 10) day = "0" + day;
+                var today = year + "-" + month + "-" + day;
+                $("#data").attr("value", today);
+
+
+                var ValorTotalPedidos = {};
+                ValorTotalPedidos.url = "/Vendas/ObterValorTotalPedidos";
+                ValorTotalPedidos.type = "GET";
+                ValorTotalPedidos.data = { "Valor": $("#ValorTotal").val() };
+                ValorTotalPedidos.dataType = "json";
+                ValorTotalPedidos.success = function (data) {
+                    $('#ValorTotalPedidos').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#ValorTotalPedidos').val("R$ " + data[i].Valor);
+                    }
+                };
+
+                $('#ValorTotalPedidos').val("R$ 0,00");
+
+                $.ajax(ValorTotalPedidos);
+                //});
+            });
+        </script>
+    }

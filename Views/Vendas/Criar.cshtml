@@ -1,0 +1,333 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Pedido>
+    @using PagedList.Mvc;
+
+
+    @{
+        ViewBag.Title = "Criar Pedidos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @if (TempData["Mensagem"] != null)
+    {
+        <br /><br /><br />
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["Mensagem"]
+        </div>
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Cliente")
+            </th>
+            <th>
+                @Html.DisplayName("Data")
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.TextBox("cliente", null, new { @class = "form-control", list = "nomeList" })
+                        <datalist id="nomeList"></datalist>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-md-7">
+                        @Html.TextBox("data", null, new { @class = "form-control", type = "Date" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="button" name="Fechar" id="Fechar" class="btn btn-primary" value="Fechar Venda" />
+            <input type="button" name="Cancelar" id="Cancelar" class="btn btn-primary" value="Cancelar Venda" />
+            @*<input type="button" name="Imprimir" id="Imprimir" class="btn btn-primary" value="Imprimir Pedido" />*@
+
+            @Html.ActionLink("Voltar", "../Home/Vendas/Criar", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    Valor Total
+                </th>
+                <th>
+                    Forma de Pagamento
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input name="ValorTotalPedidos" id="ValorTotalPedidos" class="sonums" type="text" style="background-color: black; width: 600px; height: 100px; align-content:center; opacity: 1; border-radius: 5px; color: #FFFFFF; font-size:50px; text-align: right" />
+                        </div>
+                        <div id="troco">
+                            <table class="table" id="tabelaTroco" hidden>
+                                <tr><th>Dinheiro</th>
+                                <th>Troco</th></tr>
+                                <tr><td><input name="valorDinheiro" id="valorDinheiro" onblur="calculaTroco()" maxlength="10" class="sonums" type="text" disabled style="background-color: black; width: 600px; height: 50px; align-content:center; opacity: 1; border-radius: 5px; color: #FFFFFF; font-size:25px; text-align: right" /></td>
+                                <td><input name="valorTroco" id="valorTroco" class="sonums" type="text" disabled style="background-color: black; width: 600px; height: 50px; align-content:center; opacity: 1; border-radius: 5px; color: #FFFFFF; font-size:25px; text-align: right" /></td></tr>                                
+                            </table>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-12">
+                        @Html.TextBox("formaPagamento", null, new { @class = "form-control", list = "formalist1" })
+                        <datalist id="formalist1">
+                            <option value="Dinheiro" label="Dinheiro" selected />
+                            <option value="Cheque" label="Cheque" />
+                            <option value="Cartão" label="Cartão" />
+                        </datalist>                        
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <div style="text-align:right">
+                @Html.ActionLink("Novo Pedido", "Pedidos", "Vendas", null, new { id = "addItem", @class = "btn btn-sm btn-info" })
+            </div>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Produto")
+                </th>
+                <th>
+                    @Html.DisplayName("Valor")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantidade")
+                </th>
+                <th>
+                    @Html.DisplayName("Desconto")
+                </th>
+                <th>
+                    @Html.DisplayName("ValorTotal")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Desconto)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.PedidoID)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorTotal)
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                Opções
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Imprimir", "Imprimir", new { id = item.PedidoID })</li>
+                                <li>@Html.ActionLink("Editar", "Editar", new { id = item.PedidoID })</li>
+                                <li>@Html.ActionLink("Deletar", "Deletar", new { id = item.PedidoID })</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        @Html.PagedListPager(Model, page => Url.Action("Vendas",
+                        new { pagina = page }))
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </table>
+
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                //$("#ValorTotalPedidos").on("input", function () {
+
+
+              
+                var date = new Date();
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                if (month < 10) month = "0" + month;
+                if (day < 10) day = "0" + day;
+                var today = year + "-" + month + "-" + day;
+                $("#data").attr("value", today);
+
+                var ValorTotalPedidos = {};
+                ValorTotalPedidos.url = "/Vendas/ObterValorTotalPedidos";
+                ValorTotalPedidos.type = "GET";
+                ValorTotalPedidos.data = { "Valor": $("#ValorTotal").val() };
+                ValorTotalPedidos.dataType = "json";
+                ValorTotalPedidos.success = function (data) {
+                    $('#ValorTotalPedidos').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#ValorTotalPedidos').val("R$ " + data[i].Valor);
+                    }
+                };
+
+                $('#ValorTotalPedidos').val("R$ 0,00");                
+                $('#valorTroco').val("R$ 0,00");
+                
+
+                $.ajax(ValorTotalPedidos);
+                // });
+
+                $("#cliente").on("input", function () {
+
+                    var options = {};
+                    options.url = "/Vendas/ObterCliente";
+                    options.type = "GET";
+                    options.data = { "nome": $("#cliente").val() };
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        $('#cliente').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            var Nome = data[i].Nome;
+                            $("#nomeList").append("<option value='" + data[i].Nome + "'></option>");
+                            //var Nome = data[i].Nome;
+                            //$('#cliente').val(Nome);
+                        }
+                    };
+                    $.ajax(options);
+                });
+
+                $("#valorDinheiro").blur("input", function () {
+                    var valTroco = {};
+                    valTroco.url = "/Vendas/ObterTroco";
+                    valTroco.type = "GET";
+                    valTroco.data = { "Dinheiro": $("#valorDinheiro").val(), "TotalPedido": $("#ValorTotalPedidos").val() };
+                    valTroco.dataType = "json";
+                    valTroco.success = function (data) {
+                        $('#valorTroco').empty();
+                        $('#valorDinheiro').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#valorTroco').val("R$ " + data);
+                        }
+                    };
+                    $.ajax(valTroco);
+                });
+
+
+                $("#formaPagamento").on("input", function () {
+                    if ($("#formaPagamento").val() == "Dinheiro") {                        
+                        $('#valorDinheiro').prop('disabled', false);
+                        $('#valorTroco').prop('disabled', true);                                              
+                        $("#tabelaTroco:hidden").show("fast");                        
+                    }
+                    else {                        
+                        $('#valorDinheiro').prop('disabled', true);
+                        $('#valorTroco').prop('disabled', true);                        
+                        $("#tabelaTroco").hide();
+                    }                    
+                });
+
+                $('.sonums').keypress(function (event) {
+                    //var regex = /[0-9]|\,/;                    
+                    //var tecla = (window.event) ? event.keyCode : event.which;
+                    //if ((tecla > 47 && tecla < 59)) return true;                    
+                    //else {
+                    //    if (tecla != 8) return false;
+                    //    else return true;
+                    //}
+                    var theEvent = evt || window.event;
+                    var key = (theEvent.which) ? theEvent.which : theEvent.keyCode
+                    key = String.fromCharCode(key);
+                    var regex = /[0-9]|\,/;
+                    if ([evt.keyCode || evt.which] == 8) //this is to allow backspace
+                        return true;
+                    if (!regex.test(key)) {
+                        theEvent.returnValue = false;
+                        theEvent.preventDefault();
+                    }s
+                });
+
+
+                $('#Fechar').click(function () {
+
+                    if (confirm('Confirma Venda ?')) {
+                        var Fechar = {};
+                        Fechar.url = "/Vendas/FecharPedido";
+                        Fechar.type = "GET";
+                        Fechar.data = { "Valor": $("#ValorTotalPedidos").val(), "Descricao": $("#Produto").val(), "Cliente": $("#cliente").val(), "Data": $("#data").val(), "FormaPagamento": $("#formaPagamento").val() };
+                        Fechar.dataType = "json";
+                        Fechar.success = function (data) {
+                            $('#ValorTotalPedidos').empty();
+                            //window.location.replace('/Home/Vendas');
+                            //alert("Pedido Fechado Com Sucesso.");
+                            //for (var i = 0; i < data.length; i++) {
+                            //    $('#ValorTotalPedidos').val("R$ " + data[i].Rate + ",00");
+                            //}
+                        };
+
+                        var CancelarPedido = {};
+                        CancelarPedido.url = "/Vendas/CancelarPedido";
+                        CancelarPedido.type = "GET";
+                        CancelarPedido.data = { "Valor": $("#ValorTotalPedidos").val() };
+                        CancelarPedido.dataType = "json";
+                        CancelarPedido.success = function (data) {
+                            $('#ValorTotalPedidos').empty();
+                            //alert("Pedido Canceçado com Sucesso.");
+                            window.location.replace('/Home/Vendas');
+                            //for (var i = 0; i < data.length; i++) {
+                            //    $('#ValorTotalPedidos').val("R$ " + data[i].Rate + ",00");
+                            //}
+                        };
+
+                        $.ajax(Fechar);
+
+                        $.ajax(CancelarPedido);
+                    }
+                });
+
+                $('#Cancelar').click(function () {
+                    if (confirm('Confirma Cancelamento ?')) {
+                        var Cancelar = {};
+                        Cancelar.url = "/Vendas/CancelarPedido";
+                        Cancelar.type = "GET";
+                        Cancelar.data = { "Valor": $("#ValorTotalPedidos").val() };
+                        Cancelar.dataType = "json";
+                        Cancelar.success = function (data) {
+                            $('#ValorTotalPedidos').empty();
+                            //alert("Pedido Canceçado com Sucesso.");
+                            location.reload();
+                            //for (var i = 0; i < data.length; i++) {
+                            //    $('#ValorTotalPedidos').val("R$ " + data[i].Rate + ",00");
+                            //}
+                        };
+
+                        $.ajax(Cancelar);
+                    }
+                });
+
+            });
+        </script>
+    }

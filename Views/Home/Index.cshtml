@@ -1,0 +1,93 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Agendamentos>
+@using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Agendamentos</h2>
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Dia da semana")
+            </th>
+            <th>
+                @Html.DisplayName("Animal")
+            </th>
+            <th>
+                @Html.DisplayName("Proprietário")
+            </th>
+            <th>
+                @Html.DisplayName("Telefone")
+            </th>
+            <th>
+                @Html.DisplayName("Banho")
+            </th>
+            <th>
+                @Html.DisplayName("Chegada")
+            </th>
+            <th>
+                @Html.DisplayName("Saída")
+            </th>
+            <th>
+                @Html.DisplayName("Observação")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diadasemana)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proprietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Banho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chegada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    </td>*@
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { pagina = page }))
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+   

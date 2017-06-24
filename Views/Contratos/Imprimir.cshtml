@@ -1,0 +1,160 @@
+﻿@model SGB_Beta1.Models.Contratos
+
+@{
+    ViewBag.Title = "Imprimir";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<font style="font-size: 10px">
+    <fieldset>
+        <center><img src="~/Content/imagens/bom.jpg" /></center>
+        <center><h3>Contrato de Prestação de Serviços</h3></center>
+        <div class="text-justify ">
+            <label>Pelo presente instrumento de contrato particular de prestação de serviços, de um lado como <b>CONTRATADO</b> o Bom pra Cachorro-DF estabelecio na Avenida Flamboyant lote 24 loja 32 Shopping Real Panoramic / Águas Claras - Brasília - DF CEP: 71.917.000, telefone para contato: (61) 4101-1333 / 8117-7795 ou 8116-4033 e de outro lado , como</label>.
+            <label>Contratante:</label>
+            <font style='text-decoration: underline;'>
+                @Html.DisplayFor(model => model.Nome)
+            </font>
+            <label>RG:</label>
+            <font style='text-decoration: underline;'>
+                @Html.DisplayFor(model => model.RG)
+            </font> <label>SSP-DF, inscrita no</label>
+
+            <label>CPF:</label>
+            <font style='text-decoration: underline;'>
+                @Html.DisplayFor(model => model.CPF)
+            </font>
+
+            <label>residente na:</label>
+            <font style='text-decoration: underline;'>
+                @Html.DisplayFor(model => model.Endereco)
+            </font>
+
+            <label>Brasília-DF, telefone:</label>
+            <font style='text-decoration: underline;'>
+                @Html.DisplayFor(model => model.Fone)
+            </font>
+
+            <label>E-mail:</label>
+            <font style='text-decoration: underline;'>@Html.DisplayFor(model => model.Email)</font><label>, ajustam o presente contrato, mediante as seguintes cláusulas:</label>
+        </div>
+        <div class="form-group col-md-8 col-sm-8">
+            <label>Animal:</label>
+            <font style='text-decoration: underline;'> @Html.DisplayFor(model => model.Animal)</font>
+        </div>
+        <div class="form-group col-md-8 col-sm-8">
+            <label>Período de hospedagem:</label><br />
+            @*@Html.TextBoxFor(model => model.Date, new { @Value = Model.Date.ToString().Equals("01/01/0001 00:00:00") ? string.Empty : Model.Date.ToString("dd/MM/yyyy") })*@
+            @Html.DisplayFor(model => model.HospedagemInicio) <label>ao dia </label> @Html.DisplayFor(model => model.HospedagemFim, "{0:dd/MM/yyyy}")
+        </div>
+    </fieldset>
+
+    @*Cláusula*@
+    <fieldset>
+        <legend>Cláusula Primeira</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O <b>CONTRATANTE</b> deverá apresentar o cortão de vacinação do cão contendo todas as vacinas e vermifugação em dia, inclusive a manutenção de algum tipo de controle contra ectoparasitas.</label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Segunda</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O <b>CONTRATANTE</b> deverá estar ciente de que seu cão poderá apresentar sintomas ocasionados pelo dia a dia como: diarreia, vômito, inapetência, dentre outros.</label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Terceira</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>Caso o cão precise de assistência veterinária, será efetuado o contato com o veterinário que o acompanha, e se esse não for localizado, contaremos com o apoio do veterinário responsável pelo Bom pra Cachorrro DF, e o CONTRATANTE arcará com todas as despesas.</label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Quarta</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O CONTRATANTE deverá estar ciente de que não é realizada a hospedagem de fêmeas em período de cio.</label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Quinta</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>A diária do serviço de hospedagem termina às 12h00min, tendo como tolerância 2horas. O CONTRATANTE deve estar ciente de que após o período de tolerância será acrescentada uma diária. </label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Sexta</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O pagamento deverá ser antecipado 50% para a reserva da data e os outros 50% deverão ser pagos no dia do retorno do animal para casa. </label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Sétima</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>No caso da desistência por parte do CONTRATANTE, este pagará multa de 30% do valor contratado. </label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Oitava</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O valor do presente contrato é de R$ _______ (_____________________________________________________________), e já foi realizado ___ %.</label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Nona</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>É de responsabilidade do CONTRATANTE o fornecimento de ração durante todo o período em que seu animal estiver hospedado. </label><br />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cláusula Décima</legend>
+
+        <div class="form-group col-md-10 col-sm-10">
+            <label>O CONTRATANTE cede, gratuitamente, o direito de imagem do animal beneficiário, do qual é proprietário, para figurar, individualmente ou coletivamente, em campanhas institucionais ou publicitárias da CONTRATADA, para todos os efeitos legais, observada a moral e os bons costumes. </label><br />
+        </div>
+    </fieldset>
+
+    <br /><br /><br />
+    <fieldset>
+
+
+        <label>
+            _______________________________<br />
+            CONTRATANTE
+        </label><br />
+        <br /><br />
+
+
+        <label>
+            ________________________________<br />
+            CONTRATADA
+        </label><br />
+
+    </fieldset>
+
+    <br /><br /><br />
+    <fieldset>
+        <label><center>Brasília, ____ de ______________ de ________.</center></label><br />
+
+    </fieldset>
+
+</font>
+    <div class="col-md-12 linha-sup-cinza text-center hidden-print">
+        <button onclick="window.print();" class="btn btn-primary bt-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Contrato</button>
+        @Html.ActionLink("Voltar", "../Home/Produtos", null, new { id = "addItem", @class = "btn btn-success" })
+    </div>

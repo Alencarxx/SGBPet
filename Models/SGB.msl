@@ -1,0 +1,78 @@
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SGBEntities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="Model.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Desde" ColumnName="Desde" />
+          <ScalarProperty Name="Animal" ColumnName="Animal" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produtos">
+      <EntityTypeMapping TypeName="Model.Produtos">
+        <MappingFragment StoreEntitySet="Produtos">
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+          <ScalarProperty Name="ICMS" ColumnName="ICMS" />
+          <ScalarProperty Name="Validade" ColumnName="Validade" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vacinas">
+      <EntityTypeMapping TypeName="Model.Vacinas">
+        <MappingFragment StoreEntitySet="Vacinas">
+          <ScalarProperty Name="Proprietario" ColumnName="Proprietario" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="Idade" ColumnName="Idade" />
+          <ScalarProperty Name="Animal" ColumnName="Animal" />
+          <ScalarProperty Name="Vacinas1" ColumnName="Vacinas" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Agendamentos">
+      <EntityTypeMapping TypeName="Model.Agendamentos">
+        <MappingFragment StoreEntitySet="Agendamentos">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="Saida" ColumnName="Saida" />
+          <ScalarProperty Name="Chegada" ColumnName="Chegada" />
+          <ScalarProperty Name="Banho" ColumnName="Banho" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="Proprietario" ColumnName="Proprietario" />
+          <ScalarProperty Name="Animal" ColumnName="Animal" />
+          <ScalarProperty Name="Diadasemana" ColumnName="Diadasemana" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contratos">
+      <EntityTypeMapping TypeName="Model.Contratos">
+        <MappingFragment StoreEntitySet="Contratos">
+          <ScalarProperty Name="HospedagemFim" ColumnName="HospedagemFim" />
+          <ScalarProperty Name="HospedagemInicio" ColumnName="HospedagemInicio" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Animal" ColumnName="Animal" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="RG" ColumnName="RG" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

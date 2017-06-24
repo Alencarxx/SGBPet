@@ -1,0 +1,183 @@
+﻿@model SGB_Beta1.Models.Pedido
+
+    @{
+        ViewBag.Title = "Pedidos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Vendas</h2>
+
+    @using (Html.BeginForm("Pedidos", "Vendas", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend> Novo Pedido </legend>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.PedidoID, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.PedidoID, new { @class = "form-control", list = "codigosList", type = "number" })
+                    <datalist id="codigosList"></datalist>
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.PedidoID, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Produto, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.Produto, new { @class = "form-control", list = "produtosList" })
+                    <datalist id="produtosList"></datalist>
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.Produto, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.ValorUnit, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.ValorUnit, new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.ValorUnit, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Quantia, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.Quantia, new { @class = "form-control", type = "number" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.Quantia, "*", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Desconto, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.Desconto, new { @class = "form-control", type = "number" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.Desconto, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.ValorTotal, new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.TextBoxFor(model => model.ValorTotal, new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    @Html.ValidationMessageFor(model => model.ValorTotal, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-12 linha-sup-cinza">
+                <input type="submit" class="btn btn-primary" value="Salvar Pedido" />
+                @Html.ActionLink("Voltar", "../Vendas/Criar", null, new { id = "addItem", @class = "btn btn-success" })
+            </div>
+        </fieldset>
+    }
+    @section scripts
+{
+        <script>
+            $(document).ready(function () {
+                               
+                
+                $("#Desconto").on("input", function () {
+
+                    var totalDesconto = {};
+                    totalDesconto.url = "/Vendas/ObterDesconto";
+                    totalDesconto.type = "GET";
+                    totalDesconto.data = { "Valor": $("#ValorTotal").val(), "desconto": $("#Desconto").val() };
+                    totalDesconto.dataType = "json";
+                    totalDesconto.success = function (data) {
+                        $('#ValorTotal').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ValorTotal').val(data);
+                        }
+                    };
+
+                    $.ajax(totalDesconto);
+                });
+
+                $("#Quantia").on("input", function () {
+
+                    var total = {};
+                    total.url = "/Vendas/ObterTotal";
+                    total.type = "GET";
+                    total.data = { "Valor": $("#ValorUnit").val(), "quantidade": $("#Quantia").val() };
+                    total.dataType = "json";
+                    total.success = function (data) {
+                        $('#ValorTotal').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ValorTotal').val(data);
+                        }
+                    };
+
+                    $.ajax(total);
+                });
+                               
+
+                $("#Produto").on("input", function () {
+
+                    var options = {};
+                    options.url = "/Vendas/ObterPedido";
+                    options.type = "GET";
+                    options.data = { "criterio": $("#Produto").val() };
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        $('#Quantia').empty();
+                        $('#Desconto').empty();
+                        $('#ValorTotal').empty();
+                        $('#ValorUnit').empty();
+                        $('#produtosList').empty();
+                        for (var i = 0; i < data.length; i++) {                            
+                            $("#produtosList").append("<option value='" + data[i].Descricao + "'></option>");
+                            var valor = data[i].Valor;
+                            var valorItem = valor;
+                            $('#ValorUnit').val(valorItem);
+                        }
+                    };                    
+                    $.ajax(options);
+                });
+
+
+                $("#PedidoID").on("input", function () {
+
+                    var options = {};
+                    options.url = "/Vendas/ObterCodigoPedido";
+                    options.type = "GET";
+                    options.data = { "criterio": $("#PedidoID").val() };
+                    options.dataType = "json";
+                    options.success = function (data) {
+                        $('#Quantia').empty();
+                        $('#Desconto').empty();
+                        $('#ValorTotal').empty();
+                        $('#ValorUnit').empty();
+                        $('#produtosList').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $("#codigosList").append("<option value='" + data[i].Codigo + "'></option>");
+                            $("#Produto").val(data[i].Descricao);
+                            var valor = data[i].Valor;
+                            var valorItem = valor;
+                            $('#ValorUnit').val(valorItem);
+                        }
+                    };
+                    $.ajax(options);
+                });
+
+                jQuery(function ($) {
+                    $('.numero').keyup(function () {
+                        this.value = this.value.replace(/[^0-9\.]/g, '');
+                    });
+                });
+            });
+        </script>
+    }

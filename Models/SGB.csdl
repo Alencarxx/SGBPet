@@ -1,0 +1,78 @@
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SGBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Model.Clientes" />
+    <EntitySet Name="Produtos" EntityType="Model.Produtos" />
+    <EntitySet Name="Vacinas" EntityType="Model.Vacinas" />
+    <EntitySet Name="Agendamentos" EntityType="Model.Agendamentos" />
+    <EntitySet Name="Contratos" EntityType="Model.Contratos" />
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Desde" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="Produtos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="Int64" />
+    <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Quantidade" Type="Int32" />
+    <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Validade" Type="DateTime" Precision="7" />
+    <Property Name="ICMS" Type="Int32" />
+    <Property Name="Unidade" Type="Int32" />
+    <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Vacinas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vacinas1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Idade" Type="Int32" />
+    <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Proprietario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Agendamentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Diadasemana" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Proprietario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Banho" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Chegada" Type="DateTime" Precision="7" />
+    <Property Name="Saida" Type="DateTime" Precision="7" />
+    <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Contratos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RG" Type="Int32" />
+    <Property Name="CPF" Type="Int64" />
+    <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="HospedagemInicio" Type="DateTime" Precision="7" />
+    <Property Name="HospedagemFim" Type="DateTime" Precision="7" />
+  </EntityType>
+</Schema>

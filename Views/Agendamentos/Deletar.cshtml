@@ -1,0 +1,125 @@
+﻿@model SGB_Beta1.Models.Agendamentos
+
+@{
+    ViewBag.Title = "Deletar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deletar</h2>
+
+<h3>Tem certeza que deseja excluir?</h3>
+<fieldset>
+    <legend>Agendamentos</legend>
+
+    <table border="0">
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Diadasemana, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Diadasemana)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Animal, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Animal)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Proprietario, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Proprietario)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Fone)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Banho, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Banho)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Chegada, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Chegada)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Saida, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Saida)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+                </div>
+            </td>
+            <td>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Observacao)
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="submit" class="btn btn-primary" value="Deletar" onclick="return confirm('Você confirma esta ação?');" />
+            @Html.ActionLink("Voltar", "../Home/Agendamentos", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+    </p>
+}

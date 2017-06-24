@@ -1,0 +1,146 @@
+﻿@using SGB_Beta1.Models;
+
+@{
+    ViewBag.Title = "Financeiro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["Mensagem"] != null)
+{
+    <br /><br /><br />
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["Mensagem"]
+        </div>
+}
+
+<h2>Financeiro</h2>
+
+<table style="text-align: right">
+    <tr style="text-align: right">
+        <td>
+            <div style="text-align: right">
+                @Html.ActionLink("Saldo de Vendas", "SaldoVendas", "Financeiro", null, new { id = "addItem", @class = "btn btn-lg btn-info" })
+            </div>
+        </td>
+        <td>
+            <div style="text-align: right">
+                @Html.ActionLink("Saídas", "Saidas", "Financeiro", null, new { id = "addItem", @class = "btn btn-lg btn-info" })
+            </div>
+        </td>
+        <td>
+            <div style="text-align: right">
+                @Html.ActionLink("Contas a pagar", "ContasApagar", "Financeiro", null, new { id = "addItem", @class = "btn btn-lg btn-info" })
+            </div>
+        </td>
+    </tr>
+</table>
+<br /><br />
+
+<h3>Saldo de Vendas</h3>
+<table class="table">
+    <tr style="background: lightblue">
+        <th>
+            @Html.DisplayName("Codigo")
+        </th>
+        <th>
+            @Html.DisplayName("Data")
+        </th>
+        <th>
+            @Html.DisplayName("Valor")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewData["VendasPorData"] as List<VendasPorData>)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalVendas)
+            </td>
+        </tr>
+    }
+</table>
+<h3>Saídas</h3>
+
+<table class="table">
+    <tr style="background: lightblue">
+        <th>
+            @Html.DisplayName("Codigo")
+        </th>
+        <th>
+            @Html.DisplayName("Data")
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+        </th>
+        <th>
+            @Html.DisplayName("Valor")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewData["Saidas"] as List<Saidas>)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Contas Apagar</h3>
+
+<table class="table">
+    <tr style="background: lightblue">
+        <th>
+            @Html.DisplayName("Codigo")
+        </th>
+        <th>
+            @Html.DisplayName("Data")
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+        </th>
+        <th>
+            @Html.DisplayName("Valor")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewData["ContasApagar"] as List<ContasApagar>)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+        </tr>
+    }
+</table>
+
+

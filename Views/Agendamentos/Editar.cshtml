@@ -1,0 +1,136 @@
+﻿@model SGB_Beta1.Models.Agendamentos
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Editar", "Agendamentos", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+       
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Agendamentos</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Diadasemana, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Diadasemana, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Diadasemana, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Animal, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Animal, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Animal, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Proprietario, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Proprietario, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Proprietario, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Fone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Fone, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Banho, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-2">
+                @Html.TextBoxFor(model => model.Banho, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Banho, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Chegada, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Chegada, "{0:d}", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Chegada, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Saida, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Saida,  new { @class = "form-control"})
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Saida, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-7">
+                @Html.TextAreaFor(model => model.Observacao, new { @rows = "4", @class = "form-control" })                
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Observacao, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Total, new { @class = "control-label col-md-2" })
+
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Total, "{0:n2}", new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Total, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            @Html.ActionLink("Voltar", "../Home/Agendamentos", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+    </fieldset>
+}
+
+
+@section scripts
+{
+    <script>
+        jQuery(function ($) {
+            $('.numero').keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            });
+        });
+    </script>
+}

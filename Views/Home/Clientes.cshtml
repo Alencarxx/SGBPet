@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Clientes>
+@using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Clientes";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @if (TempData["Mensagem"] != null)
+    {
+        <br /><br /><br />
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["Mensagem"]
+        </div>
+    }
+
+    <h2>Clientes</h2>
+
+    <p>
+        <div style="text-align:right">
+            @Html.ActionLink("Novo Clientes", "Criar", "Clientes", null, new { id = "addItem", @class = "btn btn-sm btn-info" })
+        </div>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Nome")
+            </th>
+            <th>
+                @Html.DisplayName("Endereço")
+            </th>
+            <th>
+                @Html.DisplayName("Bairro")
+            </th>
+            <th>
+                @Html.DisplayName("Telefone")
+            </th>
+            <th>
+                @Html.DisplayName("Animal")
+            </th>
+            <th>
+                @Html.DisplayName("Desde")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desde)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            Opções
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Editar", "../Clientes/Editar", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Deletar", "../Clientes/Deletar", new { id = item.Id })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    @Html.PagedListPager(Model, page => Url.Action("Clientes",
+                    new { pagina = page }))
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>

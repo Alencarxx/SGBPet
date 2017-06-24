@@ -1,0 +1,99 @@
+﻿@model SGB_Beta1.Models.Vacinas
+
+@{
+    ViewBag.Title = "Criar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Criar</h2>
+
+
+@using (Html.BeginForm("Criar", "Vacinas", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Vacinas</legend>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Vacinas1, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Vacinas1, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Vacinas1, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Animal, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Animal, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Animal, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Idade, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Idade, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Idade, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Proprietario, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Proprietario, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Proprietario, "*", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Fone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Fone, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextAreaFor(model => model.Observacao, new { @rows = "4", @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Observacao, null, new { @class = "text-danger" })
+            </div>
+        </div>       
+
+
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            @Html.ActionLink("Voltar", "../Home/Vacinas", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+    </fieldset>
+}
+
+
+
+@section scripts
+{
+    <script>
+        jQuery(function ($) {
+            $('.numero').keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            });
+        });
+    </script>
+}

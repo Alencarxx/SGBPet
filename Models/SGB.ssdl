@@ -1,0 +1,78 @@
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agendamentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Diadasemana" Type="varchar" MaxLength="50" />
+    <Property Name="Animal" Type="varchar" MaxLength="50" />
+    <Property Name="Proprietario" Type="varchar" MaxLength="50" />
+    <Property Name="Fone" Type="varchar" MaxLength="50" />
+    <Property Name="Banho" Type="varchar" MaxLength="50" />
+    <Property Name="Chegada" Type="datetime2" Precision="7" />
+    <Property Name="Saida" Type="datetime2" Precision="7" />
+    <Property Name="Observacao" Type="varchar(max)" />
+    <Property Name="Total" Type="money" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bairro" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Animal" Type="nvarchar" MaxLength="50" />
+    <Property Name="Desde" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Contratos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+    <Property Name="RG" Type="int" />
+    <Property Name="CPF" Type="bigint" />
+    <Property Name="Endereco" Type="varchar" MaxLength="50" />
+    <Property Name="Fone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Animal" Type="varchar" MaxLength="50" />
+    <Property Name="Total" Type="money" />
+    <Property Name="HospedagemInicio" Type="datetime2" Precision="7" />
+    <Property Name="HospedagemFim" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Produtos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="bigint" />
+    <Property Name="Descricao" Type="varchar" MaxLength="50" />
+    <Property Name="Quantidade" Type="int" />
+    <Property Name="Valor" Type="money" />
+    <Property Name="Validade" Type="datetime2" Precision="7" />
+    <Property Name="ICMS" Type="int" />
+    <Property Name="Unidade" Type="int" />
+    <Property Name="Observacao" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Vacinas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vacinas" Type="varchar" MaxLength="50" />
+    <Property Name="Animal" Type="varchar" MaxLength="50" />
+    <Property Name="Idade" Type="int" />
+    <Property Name="Fone" Type="varchar" MaxLength="50" />
+    <Property Name="Observacao" Type="varchar(max)" />
+    <Property Name="Proprietario" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Agendamentos" EntityType="Self.Agendamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contratos" EntityType="Self.Contratos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produtos" EntityType="Self.Produtos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vacinas" EntityType="Self.Vacinas" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

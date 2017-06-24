@@ -1,0 +1,816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agendamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Diadasemana" Type="varchar" MaxLength="50" />
+          <Property Name="Animal" Type="varchar" MaxLength="50" />
+          <Property Name="Proprietario" Type="varchar" MaxLength="50" />
+          <Property Name="Fone" Type="varchar" MaxLength="50" />
+          <Property Name="Banho" Type="varchar" MaxLength="50" />
+          <Property Name="Chegada" Type="datetime2" Precision="7" />
+          <Property Name="Saida" Type="datetime2" Precision="7" />
+          <Property Name="Observacao" Type="varchar(max)" />
+          <Property Name="Total" Type="money" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="Endereco" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bairro" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Animal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desde" Type="datetime2" Precision="7" />
+          <Property Name="DataNascimento" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="ContasApagar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" />
+          <Property Name="Valor" Type="money" />
+        </EntityType>
+        <EntityType Name="Contratos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" />
+          <Property Name="RG" Type="int" />
+          <Property Name="CPF" Type="bigint" />
+          <Property Name="Endereco" Type="varchar" MaxLength="50" />
+          <Property Name="Fone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Animal" Type="varchar" MaxLength="50" />
+          <Property Name="Total" Type="money" />
+          <Property Name="HospedagemInicio" Type="datetime2" Precision="7" />
+          <Property Name="HospedagemFim" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="ControlEntSai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Historico" Type="varchar" MaxLength="50" />
+          <Property Name="Entrada" Type="money" />
+          <Property Name="Saida" Type="money" />
+          <Property Name="SaldoAnterior" Type="money" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="int" Nullable="false" />
+          <Property Name="Produto" Type="varchar" MaxLength="200" />
+          <Property Name="ValorUnit" Type="money" />
+          <Property Name="Quantia" Type="int" />
+          <Property Name="Desconto" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ValorTotal" Type="money" />
+          <Property Name="Codigo_Produto" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PedidoFechado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoProduto" Type="int" />
+          <Property Name="produto" Type="varchar" MaxLength="200" />
+          <Property Name="valor" Type="varchar" MaxLength="50" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="desconto" Type="varchar" MaxLength="50" />
+          <Property Name="valorTotal" Type="varchar" MaxLength="50" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="cliente" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Produtos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="30" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" />
+          <Property Name="Quantidade" Type="int" />
+          <Property Name="Valor" Type="money" />
+          <Property Name="Validade" Type="datetime2" Precision="7" />
+          <Property Name="ICMS" Type="int" />
+          <Property Name="Unidade" Type="int" />
+          <Property Name="Observacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Saidas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Descricao" Type="varchar" MaxLength="50" />
+          <Property Name="Valor" Type="money" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiaDaSemana" Type="nvarchar" MaxLength="50" />
+          <Property Name="Animal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Proprietario" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vacinas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vacinas" Type="varchar" MaxLength="50" />
+          <Property Name="Animal" Type="varchar" MaxLength="50" />
+          <Property Name="Idade" Type="int" />
+          <Property Name="Fone" Type="varchar" MaxLength="50" />
+          <Property Name="Observacao" Type="varchar(max)" />
+          <Property Name="Proprietario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vendas">
+          <Key>
+            <PropertyRef Name="codigoVenda" />
+          </Key>
+          <Property Name="codigoVenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoProduto" Type="int" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="200" />
+          <Property Name="valor" Type="varchar" MaxLength="50" />
+          <Property Name="quantia" Type="int" />
+          <Property Name="valorTotal" Type="varchar" MaxLength="50" />
+          <Property Name="pedido" Type="int" />
+          <Property Name="pedidoFechado" Type="int" />
+          <Property Name="formaPagamento" Type="varchar" MaxLength="50" />
+          <Property Name="cliente" Type="varchar" MaxLength="200" />
+          <Property Name="DataVenda" Type="datetime" />
+          <Property Name="Observacao" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VendasPorData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="TotalVendas" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Agendamentos" EntityType="Self.Agendamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContasApagar" EntityType="Self.ContasApagar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contratos" EntityType="Self.Contratos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ControlEntSai" EntityType="Self.ControlEntSai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidoFechado" EntityType="Self.PedidoFechado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produtos" EntityType="Self.Produtos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saidas" EntityType="Self.Saidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacinas" EntityType="Self.Vacinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendas" EntityType="Self.Vendas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendasPorData" EntityType="Self.VendasPorData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SGBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agendamentos" EntityType="Model.Agendamentos" />
+          <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Model.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Model.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Model.AspNetUsers" />
+          <EntitySet Name="Clientes" EntityType="Model.Clientes" />
+          <EntitySet Name="ContasApagar" EntityType="Model.ContasApagar" />
+          <EntitySet Name="Contratos" EntityType="Model.Contratos" />
+          <EntitySet Name="ControlEntSai" EntityType="Model.ControlEntSai" />
+          <EntitySet Name="Pedido" EntityType="Model.Pedido" />
+          <EntitySet Name="PedidoFechado" EntityType="Model.PedidoFechado" />
+          <EntitySet Name="Produtos" EntityType="Model.Produtos" />
+          <EntitySet Name="Saidas" EntityType="Model.Saidas" />
+          <EntitySet Name="Table" EntityType="Model.Table" />
+          <EntitySet Name="Vacinas" EntityType="Model.Vacinas" />
+          <EntitySet Name="Vendas" EntityType="Model.Vendas" />
+          <EntitySet Name="VendasPorData" EntityType="Model.VendasPorData" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Model.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agendamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Diadasemana" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Proprietario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Banho" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chegada" Type="DateTime" Precision="7" />
+          <Property Name="Saida" Type="DateTime" Precision="7" />
+          <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Model.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desde" Type="DateTime" Precision="7" />
+          <Property Name="DataNascimento" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="ContasApagar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Contratos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RG" Type="Int32" />
+          <Property Name="CPF" Type="Int64" />
+          <Property Name="Endereco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="HospedagemInicio" Type="DateTime" Precision="7" />
+          <Property Name="HospedagemFim" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="ControlEntSai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Historico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Entrada" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Saida" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SaldoAnterior" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="Int32" Nullable="false" />
+          <Property Name="Produto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValorUnit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Quantia" Type="Int32" />
+          <Property Name="Desconto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ValorTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Codigo_Produto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PedidoFechado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoProduto" Type="Int32" />
+          <Property Name="produto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="desconto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valorTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="cliente" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Produtos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantidade" Type="Int32" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Validade" Type="DateTime" Precision="7" />
+          <Property Name="ICMS" Type="Int32" />
+          <Property Name="Unidade" Type="Int32" />
+          <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Saidas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiaDaSemana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Proprietario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Vacinas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vacinas1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Animal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Idade" Type="Int32" />
+          <Property Name="Fone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Proprietario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Vendas">
+          <Key>
+            <PropertyRef Name="codigoVenda" />
+          </Key>
+          <Property Name="codigoVenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoProduto" Type="Int32" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantia" Type="Int32" />
+          <Property Name="valorTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pedido" Type="Int32" />
+          <Property Name="pedidoFechado" Type="Int32" />
+          <Property Name="formaPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cliente" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DataVenda" Type="DateTime" Precision="3" />
+          <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VendasPorData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalVendas" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="Model.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="Model.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SGBEntities">
+          <EntitySetMapping Name="Agendamentos">
+            <EntityTypeMapping TypeName="Model.Agendamentos">
+              <MappingFragment StoreEntitySet="Agendamentos">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="Saida" ColumnName="Saida" />
+                <ScalarProperty Name="Chegada" ColumnName="Chegada" />
+                <ScalarProperty Name="Banho" ColumnName="Banho" />
+                <ScalarProperty Name="Fone" ColumnName="Fone" />
+                <ScalarProperty Name="Proprietario" ColumnName="Proprietario" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="Diadasemana" ColumnName="Diadasemana" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="Model.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="Model.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="Model.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+                <ScalarProperty Name="Desde" ColumnName="Desde" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="Fone" ColumnName="Fone" />
+                <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContasApagar">
+            <EntityTypeMapping TypeName="Model.ContasApagar">
+              <MappingFragment StoreEntitySet="ContasApagar">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contratos">
+            <EntityTypeMapping TypeName="Model.Contratos">
+              <MappingFragment StoreEntitySet="Contratos">
+                <ScalarProperty Name="HospedagemFim" ColumnName="HospedagemFim" />
+                <ScalarProperty Name="HospedagemInicio" ColumnName="HospedagemInicio" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fone" ColumnName="Fone" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="RG" ColumnName="RG" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlEntSai">
+            <EntityTypeMapping TypeName="Model.ControlEntSai">
+              <MappingFragment StoreEntitySet="ControlEntSai">
+                <ScalarProperty Name="SaldoAnterior" ColumnName="SaldoAnterior" />
+                <ScalarProperty Name="Saida" ColumnName="Saida" />
+                <ScalarProperty Name="Entrada" ColumnName="Entrada" />
+                <ScalarProperty Name="Historico" ColumnName="Historico" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="Model.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="Codigo_Produto" ColumnName="Codigo_Produto" />
+                <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+                <ScalarProperty Name="Desconto" ColumnName="Desconto" />
+                <ScalarProperty Name="Quantia" ColumnName="Quantia" />
+                <ScalarProperty Name="ValorUnit" ColumnName="ValorUnit" />
+                <ScalarProperty Name="Produto" ColumnName="Produto" />
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidoFechado">
+            <EntityTypeMapping TypeName="Model.PedidoFechado">
+              <MappingFragment StoreEntitySet="PedidoFechado">
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="valorTotal" ColumnName="valorTotal" />
+                <ScalarProperty Name="desconto" ColumnName="desconto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="produto" ColumnName="produto" />
+                <ScalarProperty Name="codigoProduto" ColumnName="codigoProduto" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtos">
+            <EntityTypeMapping TypeName="Model.Produtos">
+              <MappingFragment StoreEntitySet="Produtos">
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
+                <ScalarProperty Name="ICMS" ColumnName="ICMS" />
+                <ScalarProperty Name="Validade" ColumnName="Validade" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saidas">
+            <EntityTypeMapping TypeName="Model.Saidas">
+              <MappingFragment StoreEntitySet="Saidas">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="Model.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Proprietario" ColumnName="Proprietario" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="DiaDaSemana" ColumnName="DiaDaSemana" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacinas">
+            <EntityTypeMapping TypeName="Model.Vacinas">
+              <MappingFragment StoreEntitySet="Vacinas">
+                <ScalarProperty Name="Proprietario" ColumnName="Proprietario" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="Fone" ColumnName="Fone" />
+                <ScalarProperty Name="Idade" ColumnName="Idade" />
+                <ScalarProperty Name="Animal" ColumnName="Animal" />
+                <ScalarProperty Name="Vacinas1" ColumnName="Vacinas" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendas">
+            <EntityTypeMapping TypeName="Model.Vendas">
+              <MappingFragment StoreEntitySet="Vendas">
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="DataVenda" ColumnName="DataVenda" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="formaPagamento" ColumnName="formaPagamento" />
+                <ScalarProperty Name="pedidoFechado" ColumnName="pedidoFechado" />
+                <ScalarProperty Name="pedido" ColumnName="pedido" />
+                <ScalarProperty Name="valorTotal" ColumnName="valorTotal" />
+                <ScalarProperty Name="quantia" ColumnName="quantia" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="codigoProduto" ColumnName="codigoProduto" />
+                <ScalarProperty Name="codigoVenda" ColumnName="codigoVenda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendasPorData">
+            <EntityTypeMapping TypeName="Model.VendasPorData">
+              <MappingFragment StoreEntitySet="VendasPorData">
+                <ScalarProperty Name="TotalVendas" ColumnName="TotalVendas" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" TypeName="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" StoreEntitySet="AspNetUserClaims">
+            <EndProperty Name="AspNetUserClaims">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

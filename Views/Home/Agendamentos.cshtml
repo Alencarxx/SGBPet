@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<SGB_Beta1.Models.Agendamentos>
+                               @using PagedList.Mvc;
+
+    @{
+        ViewBag.Title = "Agendamentos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @if (TempData["Mensagem"] != null)
+    {
+        <br /><br /><br />
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            @TempData["Mensagem"]
+        </div>
+    }
+
+    <h2>Agendamentos</h2>
+
+    <p>
+        <div style="text-align:right">
+            @Html.ActionLink("Novo Agendamento", "Criar", "Agendamentos", null, new { id = "addItem", @class = "btn btn-sm btn-info" })
+        </div>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Dia da semana")
+            </th>
+            <th>
+                @Html.DisplayName("Animal")
+            </th>
+            <th>
+                @Html.DisplayName("Proprietário")
+            </th>
+            <th>
+                @Html.DisplayName("Telefone")
+            </th>
+            <th>
+                @Html.DisplayName("Banho")
+            </th>
+            <th>
+                @Html.DisplayName("Chegada")
+            </th>
+            <th>
+                @Html.DisplayName("Saída")
+            </th>
+            <th>
+                @Html.DisplayName("Observação")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diadasemana)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proprietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Banho)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chegada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Observacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            Opções
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Editar", "../Agendamentos/Editar", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Deletar", "../Agendamentos/Deletar", new { id = item.Id })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    @Html.PagedListPager(Model, page => Url.Action("Agendamentos",
+                    new { pagina = page }))
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>

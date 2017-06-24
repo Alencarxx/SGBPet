@@ -1,0 +1,99 @@
+﻿@model SGB_Beta1.Models.Clientes
+
+@{
+    ViewBag.Title = "Criar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Criar</h2>
+
+
+@using (Html.BeginForm("Criar", "Clientes", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Clientes</legend>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Endereco, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Endereco, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Bairro, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Bairro, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Bairro, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Fone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Fone, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Animal, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Animal, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Animal, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Desde, new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.Desde, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Desde, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+       
+
+
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            @Html.ActionLink("Voltar", "../Home/Clientes", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+    </fieldset>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $("#Fone").mask("(99)9999-9999");
+            $("#Nascimento").mask("99/99/9999");
+            $("#Email").rules("add", { regex: ".+\\@@.+\\..+", messages: { regex: "O e-mail informado é inválido." } });
+        });
+    </script>
+}

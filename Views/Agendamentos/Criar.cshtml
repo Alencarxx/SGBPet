@@ -1,0 +1,161 @@
+﻿@model SGB_Beta1.Models.Agendamentos
+
+@{
+    ViewBag.Title = "Criar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Criar</h2>
+
+
+@using (Html.BeginForm("Criar", "Agendamentos", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Agendamentos</legend>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Diadasemana, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Diadasemana, new { @class = "form-control", list = "datalist1" })                
+                <datalist id="datalist1">
+                    <option value="Segunda" label="Segunda-Feira" />
+                    <option value="Terça" label="Terça-Feira" />
+                    <option value="Quarta" label="Quarta-Feira" />
+                    <option value="Quinta" label="Quinta-Feira" />
+                    <option value="Sexta" label="Sexta-Feira" />
+                    <option value="Sábado" label="Sábado" />
+                    <option value="Domingo" label="Domingo" />
+                </datalist>
+              
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Diadasemana, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Animal, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Animal, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Animal, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Proprietario, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Proprietario, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Proprietario, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Fone, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Fone, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Banho, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Banho, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Banho, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Chegada, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Chegada, new { @class = "form-control", type="Date" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Chegada, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Saida, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Saida, new { @class = "form-control", type = "Date" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Saida, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextAreaFor(model => model.Observacao, new { @rows = "4", @class = "form-control" })                
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Observacao, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            @Html.LabelFor(model => model.Total, new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextBoxFor(model => model.Total, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.ValidationMessageFor(model => model.Total, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-md-12 linha-sup-cinza">
+            <input type="submit" class="btn btn-primary" value="Salvar" />
+            @Html.ActionLink("Voltar", "../Home/Agendamentos", null, new { id = "addItem", @class = "btn btn-success" })
+        </div>
+    </fieldset>
+}
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    function AtribuirMascaras() {
+
+        //        $(".campoFormD2").unmask();
+        //        $(".campoFormD2").mask("99");
+
+        //        $(".Saida").unmask();
+        //        $(".Saida").mask("99/99/9999");
+
+        //        $(".CEP").unmask();
+        //        $(".CEP").mask("99999-999");
+
+        //        $(".Fone").unmask();
+        //        $(".Fone").mask("9999-9999");
+
+        //        $(".DDD").unmask();
+        //        $(".DDD").mask("99");
+
+        //        $(".CPF").unmask();
+        //        $(".CPF").mask("999.999.999-99");
+
+        //        $(".CNPJ").unmask();
+        //        $(".CNPJ").mask("99.999.999/9999-99");
+
+        //    }
+        //});
+</script>
+}
